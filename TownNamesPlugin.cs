@@ -18,25 +18,14 @@ namespace MoreTownNames
 			Logger.LogInfo("### MORE TOWN NAMES LOADED ###");
 			Instance = this;
 
-			string defaultNames = @"Emberwatch
-			Stonehaven
-			Dunhold
-			Ashenvale
-			Ironholm
-			Mistwood
-			Crescent Bay
-			Northmark
-			Shadowpeak
-			Goldleaf
-			Ravenfort
-			Silvermere
-			Binguston";
+			string defaultNames = "Emberwatch,Stonehaven,Dunhold,Ashenvale,Ironholm,Mistwood,Crescent Bay," +
+			"Northmark,Shadowpeak,Goldleaf,Ravenfort,Silvermere,Eversong;";
 
             CustomNames = Config.Bind(
 				"General",
 				"CustomTownNames",
 				defaultNames,
-				"One town name per line."
+				"Comma-separated list of town names to add to the pool."
 			);
 
             Logger.LogInfo($"Loaded config names: {CustomNames.Value}");
