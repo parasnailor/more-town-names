@@ -18,8 +18,32 @@ namespace MoreTownNames
 			Logger.LogInfo("### MORE TOWN NAMES LOADED ###");
 			Instance = this;
 
-			string defaultNames = "Emberwatch,Stonehaven,Dunhold,Ashenvale,Ironholm,Mistwood,Crescent Bay," +
-			"Northmark,Shadowpeak,Goldleaf,Ravenfort,Silvermere,Eversong";
+			string defaultNames = "Emberwatch,Stonehaven,Dunhold,Ashenvale,Ironholm,Mistwood," +
+			"Northmark,Shadowpeak,Goldleaf,Ravenfort,Silvermere,Eversong,Ashenford,Bramblewatch," +
+			"Cinderhollow,Duskmire,Ebonreach,Fallowrest,Gloomharbor,Hearthveil,Ironwood,Jadefen," +
+			"Kestrelmoor,Lanternfall,Murkshade,Nightbarrow,Oakenspire,Pinehollow,Quarrydeep,Ravenmoor," +
+			"Stonewake,Thornfield,Umbraforge,Valeguard,Windscar,Yewreach,Amberglade,Briarfall,Coalridge," +
+			"Driftwood,Elderfen,Fogrest,Grimwillow,Hallowmere,Ivorybrook,Juniperwatch,Kindlewood,Lowmarsh," +
+			"Mossgrove,Nettleford,Obsidian Vale,Pebblecross,Quickwater,Rusthollow,Silverfen,Tallowmere," +
+			"Umberfield,Vinewatch,Wildbarrow,Yarrowfen,Zephyrmoor,Arborfall,Blackroot,Cragspire,Dewhollow," + 
+			"Emberfall,Fernreach,Gravelmere,Honeybrook,Ironscar,Knollrest,Larchveil,Moonfen,Narrowbrook," +
+			"Oldenwatch,Portshade,Quiet Hollow,Ridgewake,Sableford,Twinbarrow,Umbral Cross,Valebrook," +
+			"Westermire,Yonderfall,Ashen Hollow,Bleakwatch,Crowfen,Darkmere,Eastreach,Fallowbrook,Grimhollow," +
+			"Hillshade,Jasper Hollow,Keelmoor,Lonewatch,Mirefall,Nightreach,Oakshade,Pale Hollow,Quillfen," +
+			"Rustmere,Shadewatch,Timberfall,Umber Hollow,Veilmoor,Whitefen,Amber Hollow,Bramblemere," +
+			"Cinderbrook,Duskwatch,Ebon Hollow,Fernmere,Gloombrook,Hearthfall,Ironmere,Jade Hollow,Kestrelbrook," +
+			"Lanternmere,Murkbrook,Nightfall,Oakmere,Pinebrook,Quarrymere,Ravenbrook,Stonefall,Thornmere," +
+			"Umbra Brook,Valehollow,Windmere,Yewbrook,Arborwatch,Blackmere,Cragbrook,Dewmere,Emberbrook," +
+			"Fernfall,Gravelbrook,Honeymere,Ironbrook,Jaggedmere,Knollbrook,Larchmere,Moonbrook,Narrowmere," +
+			"Oldenbrook,Portmere,Quietbrook,Ridgemere,Sablebrook,Twinmere,Valemere,Westermere,Yondermere," +
+			"Ashenmere,Bleakbrook,Crowmere,Darkbrook,Eastmere,Fallowmere,Grimbrook,Hillmere,Jaspermere," +
+			"Keelbrook,Lonebrook,Mirebrook,Nightmere,Oakbrook,Palemere,Quillbrook,Rustbrook,Shadebrook," +
+			"Timberbrook,Umberbrook,Veilbrook,Whitebrook,Amberbrook,Bramblebrook,Duskbrook,Ebonbrook," +
+			"Fernbrook,Gloombrook,Hearthbrook,Ironfall,Jadebrook,Kestrelmere,Lanternbrook,Murkfall,Nightbrook," +
+			"Oakfall,Pinefall,Quarryfall,Ravenfall,Stonebrook,Thornbrook,Umbrafall,Valefall,Windbrook,Yewfall," +
+			"Arborbrook,Blackbrook,Cragfall,Dewbrook,Embermere,Fernshade,Gravelshade,Honeyshade,Ironshade," +
+			"Jaggedshade,Knollshade,Larchshade,Moonshade,Narrowshade,Oldenshade,Portshade,Quietshade,Ridgeshade," +
+			"Sableshade,Twinshade,Valeshade,Westershade,Yondershade";
 
             CustomNames = Config.Bind(
 				"General",

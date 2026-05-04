@@ -26,7 +26,6 @@
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
 		<Reference Include="Assembly-CSharp" Publicize="true">
-      <HintPath>$(StormPath)/Against The Storm_Data/Managed/Assembly-CSharp.dll</HintPath>
       <Private>false</Private>
     </Reference>
 	</ItemGroup>
@@ -56,16 +55,22 @@
       SourceFiles="manifest.json"
       DestinationFolder="$(ThunderstoreDir)"
       Condition="Exists('manifest.json')" />
-
     <Copy
       SourceFiles="README.md"
       DestinationFolder="$(ThunderstoreDir)"
       Condition="Exists('README.md')" />
-
     <Copy
       SourceFiles="icon.png"
       DestinationFolder="$(ThunderstoreDir)"
       Condition="Exists('icon.png')" />
+    <Copy
+      SourceFiles="LICENSE"
+      DestinationFolder="$(ThunderstoreDir)"
+      Condition="Exists('LICENSE')" />
+    <Copy
+      SourceFiles="CHANGELOG.md"
+      DestinationFolder="$(ThunderstoreDir)"
+      Condition="Exists('CHANGELOG.md')" />
   </Target>
 
   <Target Name="ZipThunderstore" AfterTargets="StageThunderstore" Condition="'$(Configuration)' == 'Release'">
