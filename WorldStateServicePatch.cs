@@ -6,18 +6,27 @@ using System.Linq;
 
 namespace MoreTownNames.Patches;
 
-[HarmonyPatch(typeof(WorldStateService), nameof(WorldStateService.GetTownsNamesKeysLeft))]
+[HarmonyPatch(typeof(WorldStateService), "GetCitiesNamesKeys")]
 public class WorldStateServicePatch
 {
 	[HarmonyPostfix]
-	public static void GetTownsNamesKeysLeftPostfix(ref List<string> __result)
+	public static void GetCitiesNamesKeysPostfix(ref string[] __result)
 	{
 		var customNames = NameProvider.GetCustomNames();
-		if (customNames.Count > 0)
-		{
-			__result.AddRange(customNames);
-			__result = __result.Distinct().ToList();
-			__result.Shuffle();
-		}
+
+        if (customNames == null || customNames.Count == 0)
+            return;
+
+        // Convert to mutable collection
+        var result = __result?.ToList() ?? new List<string>();
+
+        result.AddRange(customNames);
+
+        // remove duplicates
+        result = result.Distinct().ToList();
+
+        result.Shuffle();
+
+        __result = result.ToArray();
 	}
 }
