@@ -1,3 +1,6 @@
+## 1.0.3
+- Fixed some typos in the readme
+
 ## 1.0.2
 - Added many names to the list and removed a few
 - Added website link to GitHub repo
