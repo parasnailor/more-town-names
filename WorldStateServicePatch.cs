@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using HarmonyLib;
 using Eremite.Services;
 using TownNamesMod;
+using System.Linq;
 
 namespace MoreTownNames.Patches;
 
@@ -15,6 +16,7 @@ public class WorldStateServicePatch
 		if (customNames.Count > 0)
 		{
 			__result.AddRange(customNames);
+			__result = __result.Distinct().ToList();
 			__result.Shuffle();
 		}
 	}

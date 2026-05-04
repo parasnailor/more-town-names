@@ -11,7 +11,7 @@ namespace TownNamesMod
             var raw = TownNamesPlugin.CustomNames.Value;
 
             return raw
-                .Split('\n')
+                .Split(',')
                 .Select(n => n.Trim())
                 .Where(n => !string.IsNullOrEmpty(n))
                 .ToList();
