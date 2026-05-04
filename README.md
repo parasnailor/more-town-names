@@ -22,7 +22,7 @@ A BepInEx mod that adds custom town names to Against the Storm's random town nam
    ```
 
 3. **Copy the DLL**
-   - Find `TownNamesMod.dll` in the `bin/Release/net472` directory
+   - Find `MoreTownNames.dll` in the `bin/Release/net472` directory
    - Copy it to `<GameDir>/BepInEx/plugins/`
 
 4. **Add custom town names**

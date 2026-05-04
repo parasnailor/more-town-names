@@ -3,7 +3,7 @@ using System.Linq;
 using HarmonyLib;
 using Eremite.Services;
 
-namespace TownNamesMod.Patches;
+namespace MoreTownNames.Patches;
 
 [HarmonyPatch(typeof(WorldStateService), nameof(WorldStateService.GetTownsNamesKeysLeft))]
 public class WorldStateServicePatch

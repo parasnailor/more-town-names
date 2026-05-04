@@ -3,7 +3,7 @@ using System.IO;
 using BepInEx;
 using UnityEngine;
 
-namespace TownNamesMod.Config;
+namespace MoreTownNames.Config;
 
 public static class ConfigManager
 {

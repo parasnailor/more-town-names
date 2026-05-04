@@ -2,8 +2,9 @@ using BepInEx;
 using HarmonyLib;
 using Eremite;
 using Eremite.Controller;
+using Eremite.Services;
 
-namespace TownNamesMod 
+namespace MoreTownNames 
 {
 	[BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
 	// [BepInPlugin("com.wes.againstthestorm.townnames", "Town Names Mod", "1.0.0")]
@@ -18,7 +19,8 @@ namespace TownNamesMod
 			try
 			{
 				Instance = this;
-				harmony = Harmony.CreateAndPatchAll(typeof(TownNamesPlugin));  
+				harmony = new Harmony(PluginInfo.PLUGIN_GUID);
+				harmony.PatchAll();
 				Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
 				
 				// var harmony = new Harmony("townnames.mod");
@@ -31,7 +33,7 @@ namespace TownNamesMod
 			}
 		}
 
-		[HarmonyPatch(typeof(MainController), nameof(MainController.OnServicesReady))]
+		[HarmonyPatch(typeof(MainController), "OnServicesReady")]
 		[HarmonyPostfix]
 		private static void HookMainControllerSetup()
 		{ 
@@ -42,13 +44,13 @@ namespace TownNamesMod
 			Instance.Logger.LogInfo($"The game has loaded {MainController.Instance.Settings.effects.Length} effects.");
 		}
 
-		[HarmonyPatch(typeof(GameController), nameof(GameController.StartGame))]
+		[HarmonyPatch(typeof(GameController), "StartGame")]
 		[HarmonyPostfix]
 		private static void HookEveryGameStart()
 		{
 			// Too difficult to predict when GameController will exist and I can hook observers to it
 			// So just use Harmony and save us all some time. This method will run after every game start
-			var isNewGame = MB.GameSaveService.IsNewGame();
+			var isNewGame = AccessTools.Method(typeof(GameService), "IsNewGame").Invoke(null, null);
 			Instance.Logger.LogInfo($"Entered a game. Is this a new game: {isNewGame}.");
 		}
 	}
