@@ -1,5 +1,5 @@
 # More Town Names
-A plugin that adds more town names to the random name pool using during embarkation.
+A plugin that adds more town names to the random name pool used during embarkation.
 
 # Usage
 The mod adds a list of about 200 names to the pool. To add more names (or remove ones added by the mod), open `BepInEx/config/MoreTownNames.cfg`, find `CustomTownNames`, and set the name list as a comma-separated string:
