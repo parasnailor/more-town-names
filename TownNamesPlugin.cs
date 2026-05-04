@@ -19,7 +19,7 @@ namespace MoreTownNames
 			Instance = this;
 
 			string defaultNames = "Emberwatch,Stonehaven,Dunhold,Ashenvale,Ironholm,Mistwood,Crescent Bay," +
-			"Northmark,Shadowpeak,Goldleaf,Ravenfort,Silvermere,Eversong;";
+			"Northmark,Shadowpeak,Goldleaf,Ravenfort,Silvermere,Eversong";
 
             CustomNames = Config.Bind(
 				"General",
