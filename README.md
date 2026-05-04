@@ -10,3 +10,6 @@ To add more names to the random pool, open `BepInEx/config/MoreTownNames.cfg`, f
 # Default value: ...
 CustomTownNames = Emberwatch,Stonehaven,Dunhold,Ashenvale,Ironholm...
 ```
+
+# AI Disclosure
+ChatGPT was used to generate the thunderstore icon.
