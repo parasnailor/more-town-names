@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
 using HarmonyLib;
 using Eremite.Services;
+using TownNamesMod;
 
 namespace MoreTownNames.Patches;
 
@@ -11,7 +11,7 @@ public class WorldStateServicePatch
 	[HarmonyPostfix]
 	public static void GetTownsNamesKeysLeftPostfix(ref List<string> __result)
 	{
-		List<string> customNames = Config.ConfigManager.GetCustomTownNames();
+		var customNames = NameProvider.GetCustomNames();
 		if (customNames.Count > 0)
 		{
 			__result.AddRange(customNames);

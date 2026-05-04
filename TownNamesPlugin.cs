@@ -1,36 +1,49 @@
 using BepInEx;
 using HarmonyLib;
-using Eremite;
 using Eremite.Controller;
 using Eremite.Services;
+using BepInEx.Configuration;
 
 namespace MoreTownNames 
 {
 	[BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
-	// [BepInPlugin("com.wes.againstthestorm.townnames", "Town Names Mod", "1.0.0")]
 	public class TownNamesPlugin : BaseUnityPlugin
 	{
 		public static TownNamesPlugin Instance;
+		internal static ConfigEntry<string> CustomNames;
+
 		private Harmony harmony;
 		private void Awake()
 		{
-			Logger.LogInfo("### TOWN NAMES MOD AWAKE ###");
+			Logger.LogInfo("### MORE TOWN NAMES LOADED ###");
+			Instance = this;
 
-			try
-			{
-				Instance = this;
-				harmony = new Harmony(PluginInfo.PLUGIN_GUID);
-				harmony.PatchAll();
-				Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
-				
-				// var harmony = new Harmony("townnames.mod");
-				// harmony.PatchAll(typeof(Patches.WorldStateServicePatch));
-				// Logger.LogInfo("### PATCHES APPLIED ###");
-			}
-			catch (System.Exception ex)
-			{
-				Logger.LogError($"### PATCH ERROR: {ex} ###");
-			}
+			string defaultNames = @"Emberwatch
+			Stonehaven
+			Dunhold
+			Ashenvale
+			Ironholm
+			Mistwood
+			Crescent Bay
+			Northmark
+			Shadowpeak
+			Goldleaf
+			Ravenfort
+			Silvermere
+			Binguston";
+
+            CustomNames = Config.Bind(
+				"General",
+				"CustomTownNames",
+				defaultNames,
+				"One town name per line."
+			);
+
+            Logger.LogInfo($"Loaded config names: {CustomNames.Value}");
+
+			harmony = new Harmony(PluginInfo.PLUGIN_GUID);
+			harmony.PatchAll();
+			Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} patching complete.");
 		}
 
 		[HarmonyPatch(typeof(MainController), "OnServicesReady")]

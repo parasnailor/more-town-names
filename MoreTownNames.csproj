@@ -7,6 +7,10 @@
     <Version>1.0.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
+    <!-- Where to stage the package -->
+    <ThunderstoreDir>$(ProjectDir)thunderstore</ThunderstoreDir>
+    <ThunderstorePluginsDir>$(ThunderstoreDir)/plugins/$(AssemblyName)</ThunderstorePluginsDir>
+    <ThunderstoreZip>$(ProjectDir)$(AssemblyName).zip</ThunderstoreZip>
   </PropertyGroup>
 
   <ItemGroup>
@@ -37,19 +41,40 @@
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
   </ItemGroup>
 
-  <Target Name="Deploy" AfterTargets="Build">
-		<ItemGroup>
-			<Assembly Include="$(OutputPath)\$(AssemblyName).dll" />
-      <Assets Include="$(OutputPath)\assets\*.*" />
-		</ItemGroup>
+  <Target Name="StageThunderstore" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <!-- Clean previous output -->
+    <RemoveDir Directories="$(ThunderstoreDir)" />
+    <MakeDir Directories="$(ThunderstorePluginsDir)" />
 
-		<Copy SourceFiles="@(Assembly)" DestinationFolder="$(StormPath)\BepInEx\plugins" />
-    <Copy SourceFiles="@(Assets)" DestinationFolder="$(StormPath)\BepInEx\plugins\assets\" />
+    <!-- Copy compiled DLL -->
+    <Copy
+      SourceFiles="$(OutputPath)$(AssemblyName).dll"
+      DestinationFolder="$(ThunderstorePluginsDir)" />
+
+    <!-- Copy manifest + extras if they exist -->
+    <Copy
+      SourceFiles="manifest.json"
+      DestinationFolder="$(ThunderstoreDir)"
+      Condition="Exists('manifest.json')" />
+
+    <Copy
+      SourceFiles="README.md"
+      DestinationFolder="$(ThunderstoreDir)"
+      Condition="Exists('README.md')" />
+
+    <Copy
+      SourceFiles="icon.png"
+      DestinationFolder="$(ThunderstoreDir)"
+      Condition="Exists('icon.png')" />
   </Target>
 
-  <Target Name="CopyToThunderstore" AfterTargets="Build">
-  <MakeDir Directories="$(ProjectDir)Thunderstore/plugins" />
-  <Copy SourceFiles="$(OutputPath)MoreTownNames.dll"
-        DestinationFolder="$(ProjectDir)Thunderstore/plugins" />
-</Target>
+  <Target Name="ZipThunderstore" AfterTargets="StageThunderstore" Condition="'$(Configuration)' == 'Release'">
+    <!-- Remove old zip if it exists -->
+    <Delete Files="$(ThunderstoreZip)" Condition="Exists('$(ThunderstoreZip)')" />
+
+    <!-- Create zip (Linux/macOS using zip CLI) -->
+    <Exec
+      Command="cd &quot;$(ThunderstoreDir)&quot; &amp;&amp; zip -r &quot;$(ThunderstoreZip)&quot; ."
+    />
+  </Target>
 </Project>
