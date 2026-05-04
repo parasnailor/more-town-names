@@ -59,16 +59,26 @@ YetAnotherTown
 
 ### Requirements
 - .NET SDK 6.0+ or Visual Studio 2019+
-- Game assemblies (dumped from Against the Storm)
-- BepInEx libraries
+- Against the Storm game (for Assembly-CSharp.dll)
 
 ### Setup
-1. Place the game's managed DLLs in the root directory (or update `.csproj` paths)
-2. Ensure BepInEx DLLs are accessible at the path specified in `.csproj`
 
-```bash
-dotnet build -c Release
-```
+1. **Get the game assembly:**
+   ```bash
+   ./setup.sh
+   ```
+   
+   Or manually copy it:
+   ```bash
+   cp "<GameDir>/Against the Storm_Data/Managed/Assembly-CSharp.dll" .
+   ```
+
+2. **Build the mod:**
+   ```bash
+   ./package.sh
+   ```
+
+The script automatically downloads BepInEx/Harmony from NuGet, so you don't need to manually manage those.
 
 ## Troubleshooting
 

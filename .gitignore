@@ -9,3 +9,5 @@ obj/
 /dump/
 /UnityEngine*.dll
 /Assembly-CSharp.dll
+/ModTemplate/
+/dist/

@@ -14,7 +14,8 @@ echo ""
 
 # Step 1: Build the project
 echo "[1/5] Building mod..."
-dotnet build "$SCRIPT_DIR/TownNamesMod.csproj" -c $BUILD_CONFIG -q
+dotnet clean "$SCRIPT_DIR/TownNamesMod.csproj" -c $BUILD_CONFIG -q 2>/dev/null || true
+dotnet build "$SCRIPT_DIR/TownNamesMod.csproj" -c $BUILD_CONFIG
 echo "✓ Build complete"
 echo ""
 
