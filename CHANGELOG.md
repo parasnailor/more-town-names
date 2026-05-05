@@ -1,3 +1,7 @@
+## 1.0.4
+- README updates
+- separated github README from thunderstore README
+
 ## 1.0.3
 - Fixed some typos in the readme
 

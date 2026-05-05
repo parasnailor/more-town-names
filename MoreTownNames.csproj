@@ -56,9 +56,9 @@
       DestinationFolder="$(ThunderstoreDir)"
       Condition="Exists('manifest.json')" />
     <Copy
-      SourceFiles="README.md"
-      DestinationFolder="$(ThunderstoreDir)"
-      Condition="Exists('README.md')" />
+      SourceFiles="thunderstore-readme.md"
+      DestinationFiles="$(ThunderstoreDir)/README.md"
+      Condition="Exists('thunderstore-readme.md')" />
     <Copy
       SourceFiles="icon.png"
       DestinationFolder="$(ThunderstoreDir)"
