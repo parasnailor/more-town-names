@@ -1,3 +1,6 @@
+## 1.0.5
+- README updates (add known issues section)
+
 ## 1.0.4
 - README updates
 - separated github README from thunderstore README
